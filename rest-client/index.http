@@ -3,15 +3,35 @@ GET http://localhost:5000
 
 ###### Authentication ######
 
+
+
+
+
+
+
+
+
+
+
 ### Register New User
 POST http://localhost:5000/api/v1/auth/signup
 Content-Type: application/json
 
 {
     "name": "user",
-    "email": "user@example.com",
+    "email": "user1234@example.com",
     "password": "password123"
 }
+
+
+
+
+
+
+
+
+
+
 
 ### Login User
 POST http://localhost:5000/api/v1/auth/signin
@@ -22,8 +42,20 @@ Content-Type: application/json
     "password": "password123"
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 ### Store the token from login response
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTFlMGFlOS03MDQ3LTRmY2MtOTczMS0zMWI2YThjZjY3YTgiLCJpYXQiOjE3Mjk2NTg0MzYsImV4cCI6MTczMDI2MzIzNn0.v781xGtHyx2Gg7FNz4LAheAjE5cmE8k_lHIy-1oorSM
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTFlMGFlOS03MDQ3LTRmY2MtOTczMS0zMWI2YThjZjY3YTgiLCJpYXQiOjE3Mjk2NjEyMTEsImV4cCI6MTczMDI2NjAxMX0.DcsV1PuK_I0nkx7LdVBzyk5dAGNiAvv8SjIKDRdp1rA
 ###### Categories ######
 
 ### Get All Categories
@@ -37,6 +69,15 @@ Content-Type: application/json
     "name": "frelancing",
     "type": "EXPENSE"
 }
+
+
+
+
+
+
+
+
+
 
 
 ### Update Category
@@ -59,9 +100,38 @@ Authorization: Bearer {{authToken}}
 
 ###### Transactions ######
 
+
+
+
+
+
+
+
+
+
 ### Get All Transactions
 GET http://localhost:5000/api/v1/transactions
 Authorization: Bearer {{authToken}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Create New Transaction
 @categoryId = 92342778-8b18-43af-97d9-cfee7365c2fa
@@ -77,12 +147,46 @@ Content-Type: application/json
     "date": "2024-03-15T10:00:00Z"
 }
 
+
+
+
+
+
+
+
+
+
+
+
 ### Get Transaction By Id
 
 @transactionId = f03ff410-c7b0-4052-9bf3-a6e262212290
 
 GET http://localhost:5000/api/v1/transactions/{{transactionId}}
 Authorization: Bearer {{authToken}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Update Transaction By Id
@@ -97,10 +201,38 @@ Content-Type: application/json
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 ### Delete Transaction By Id
 @transactionId = 0c167ed8-8e4c-431f-8044-274d3cbaf3ac
 DELETE http://localhost:5000/api/v1/transactions/{{transactionId}}
 Authorization: Bearer {{authToken}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Summary
@@ -108,35 +240,25 @@ GET http://localhost:5000/api/v1/summary
 Authorization: Bearer {{authToken}}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Get Transactions with Pagination
 GET http://localhost:5000/api/v1/transactions?page=1&limit=6
 Authorization: Bearer {{authToken}}
-
-### Get Transactions with Sorting
-GET http://localhost:5000/api/v1/transactions?sort=amount
-Authorization: Bearer {{authToken}}
-
-### Get Transactions with Date Range
-GET http://localhost:5000/api/v1/transactions?startDate=2024-01-01&endDate=2024-12-31
-Authorization: Bearer {{authToken}}
-
-
-
-
-
-
-###### Advanced Queries ######
-
-### Get Transactions by Category
-GET http://localhost:5000/api/v1/transactions?categoryId={{categoryId}}
-Authorization: Bearer {{authToken}}
-
-### Get Transactions by Type (INCOME/EXPENSE)
-GET http://localhost:5000/api/v1/transactions?type=EXPENSE
-Authorization: Bearer {{authToken}}
-
-### Get Transactions with Multiple Filters
-GET http://localhost:5000/api/v1/transactions?type=EXPENSE&startDate=2024-01-01&endDate=2024-12-31&sort=amount:desc&page=1&limit=10
-Authorization: Bearer {{authToken}}
-
-#####################
