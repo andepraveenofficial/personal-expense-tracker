@@ -170,3 +170,4 @@
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"DELETE/api/v1/transactions/0c167ed8-8e4c-431f-8044-274d3cbaf3ac\",\"url\":\"200\",\"status\":\"39.605\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T05:27:34.071Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET/api/v1/summary\",\"url\":\"200\",\"status\":\"11.955\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T05:27:38.195Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET/api/v1/transactions?page=1&limit=6\",\"url\":\"200\",\"status\":\"23.104\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T05:27:42.526Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"POST/api/v1/auth/signin\",\"url\":\"200\",\"status\":\"152.301\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T06:02:58.151Z"}
