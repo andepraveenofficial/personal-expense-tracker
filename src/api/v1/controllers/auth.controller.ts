@@ -27,9 +27,8 @@ export const signin = asyncHandler(async (req: Request, res: Response) => {
       refreshToken,
       user: {
         id: user.id,
+        name: user.name,
         email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
       },
     });
 });

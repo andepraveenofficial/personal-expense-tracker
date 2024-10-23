@@ -1,10 +1,6 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
 
-/* -----> swagger <----- */
-import swaggerUi from 'swagger-ui-express';
-import swaggerOptions from '../openapi.json';
-
 /* -----> Third Party Packages <----- */
 import cors from 'cors';
 import corsOptions from './config/cors'; // cors options
@@ -45,9 +41,6 @@ app.use(loggerMorgan);
 app.set('views', path.join(__dirname, 'views'));
 
 /* -----> Routes <----- */
-
-app.use('/api-docs', swaggerUi.serve);
-app.get('/api-docs', swaggerUi.setup(swaggerOptions));
 
 app.get('/', (req: Request, res: Response) => {
   console.log('I am Home Route');

@@ -1,12 +1,3 @@
-interface UserModel {
-  id: string;
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  refreshToken?: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { User } from '@prisma/client';
 
-export default UserModel;
+export type UserModel = User;

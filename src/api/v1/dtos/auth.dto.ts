@@ -1,9 +1,7 @@
 export interface SignupDto {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   password: string;
-  roleId: string;
 }
 
 export interface SigninDto {

@@ -1,117 +1,135 @@
-### 00 Home -> Test 
+### Base URL Test
 GET http://localhost:5000
-
 
 ###### Authentication ######
 
-### 01 Signup
-POST http://localhost:5000/api/v1/auth/signup
+### Register New User
+POST http://localhost:5000/api/v1/auth/register
 Content-Type: application/json
 
 {
-    "firstName": "Praveen",
-    "lastName": "Ande",
-    "email": "praveenanddses@example.com",
-    "password":"praveenande123"
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "password123"
 }
 
-### 02 Signin
-POST http://localhost:5000/api/v1/auth/signin
+### Login User
+POST http://localhost:5000/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "email": "praveenande@example.com",
-  "password": "praveenande123"
+    "email": "john@example.com",
+    "password": "password123"
 }
 
-### 03 Signout
-GET http://localhost:5000/signout
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMDE5NjM2Yi1lNDRlLTQwZTMtYWI2Yi05ODgyNDExMjFhMTciLCJpYXQiOjE3MjY3NjMxMjQsImV4cCI6MTcyNzM2NzkyNH0.hJIpnDEZ1ZghDXitvzSLhqAbHl3xvXEhJN9J2NDqeak
+### Store the token from login response
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
+###### Categories ######
 
-### 01 Get All Products -> Success -> token
-GET http://localhost:5000/products1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwYjA4NWZhMi0yZDg0LTRiZjItODUyNy1mZmQ5MGI2ZWM1NTIiLCJpYXQiOjE3Mjc2NzkwNzUsImV4cCI6MTcyODI4Mzg3NX0.6sGGSejaGnlhpLaxiIF9IRJydYaex4X13r9Ql_X-Bwo
+### Get All Categories
+GET http://localhost:5000/api/v1/categories
+Authorization: Bearer {{authToken}}
 
-### 01 Get All Products -> Success -> Cookie
-GET http://localhost:5000/products1
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTU2Njg1NC1mMTI5LTRlNzQtODgyNi1mMzA3YmE2YzQ1YTEiLCJpYXQiOjE3Mjc2NzYwNDEsImV4cCI6MTcyODI4MDg0MX0.Ex9UIEHYOQTLxf1nNR_RSCzYS2M6Cnbny4ZM3sC50uU
+### Get Categories with Pagination
+GET http://localhost:5000/api/v1/categories?page=1&limit=10
+Authorization: Bearer {{authToken}}
 
-### 02 Get All Products -> Failure
-GET http://localhost:5000/products2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMDE5NjM2Yi1lNDRlLTQwZTMtYWI2Yi05ODgyNDExMjFhMTciLCJpYXQiOjE3MjY3NjMxMjQsImV4cCI6MTcyNzM2NzkyNH0.hJIpnDEZ1ZghDXitvzSLhqAbHl3xvXEhJN9J2NDqeak
+### Get Categories with Search
+GET http://localhost:5000/api/v1/categories?search=groceries
+Authorization: Bearer {{authToken}}
 
-### 02 Get All Products -> Failure
-GET http://localhost:5000/products2
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTU2Njg1NC1mMTI5LTRlNzQtODgyNi1mMzA3YmE2YzQ1YTEiLCJpYXQiOjE3Mjc2NzYwNDEsImV4cCI6MTcyODI4MDg0MX0.Ex9UIEHYOQTLxf1nNR_RSCzYS2M6Cnbny4ZM3sC50uU
+### Get Categories with Sorting
+GET http://localhost:5000/api/v1/categories?sort=name:asc
+Authorization: Bearer {{authToken}}
 
-
-########## NotFound ############
-GET http://localhost:5000/notfound
-
-
-####### Query Params ##########
-
-### Test 1: Default Pagination
-GET http://localhost:5000/products
-
-### Test 2: Specify Page 1 with 5 items (default 10 items)  per page
-GET http://localhost:5000/products?page=1&limit=5
-
-### Test 3: Page 2 with 5 items per page
-GET http://localhost:5000/products?page=2&limit=5
-
-### Test 4: Page 3 with 5 items per page
-GET http://localhost:5000/products?page=3&limit=5
-
-### Test 5: Attempt to get a page beyond total pages
-GET http://localhost:5000/products?page=100&limit=5
-
-### Test 6: Use a large limit
-GET http://localhost:5000/products?page=1&limit=50
-
-### Test 7: Attempt to use a limit beyond the maximum
-GET http://localhost:5000/products?page=1&limit=200
-
-### Test 8: Use pagination with search
-GET http://localhost:5000/products?page=1&limit=10&search=phone
-
-### Test 9: Use pagination with sorting
-GET http://localhost:5000/products?page=1&limit=10&sort=price:desc
-
-### Test 10: Combine pagination, search, and sorting
-GET http://localhost:5000/products?page=1&limit=10&search=laptop&sort=price:asc
-
-##########################
-
-### 01 Get All Products
-GET http://localhost:5000/api/v1/products
-
-### 02 Create New Product
-POST http://localhost:5000/api/v1/products
+### Create New Category
+POST http://localhost:5000/api/v1/categories
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "name": "New Products2",
-  "price": 19.99
+    "name": "Groceries",
+    "type": "EXPENSE"
 }
 
-### 03 Update Product (Full Update)
-PUT http://localhost:5000/api/v1/products/7c0164ec-a20b-4c77-b461-8704c0887712
+### Update Category
+PUT http://localhost:5000/api/v1/categories/{{categoryId}}
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "name": "Updated Product",
-  "price": 25.99
+    "name": "Updated Groceries",
+    "type": "EXPENSE"
 }
 
-### 04 Patch Product (Partial Update)
-PATCH http://localhost:5000/api/v1/products/7c0164ec-a20b-4c77-b461-8704c0887712
+### Delete Category
+DELETE http://localhost:5000/api/v1/categories/{{categoryId}}
+Authorization: Bearer {{authToken}}
+
+###### Transactions ######
+
+### Get All Transactions
+GET http://localhost:5000/api/v1/transactions
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Pagination
+GET http://localhost:5000/api/v1/transactions?page=1&limit=10
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Search
+GET http://localhost:5000/api/v1/transactions?search=grocery
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Sorting
+GET http://localhost:5000/api/v1/transactions?sort=amount:desc
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Date Range
+GET http://localhost:5000/api/v1/transactions?startDate=2024-01-01&endDate=2024-12-31
+Authorization: Bearer {{authToken}}
+
+### Create New Transaction
+POST http://localhost:5000/api/v1/transactions
+Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "price": 29.99
+    "type": "EXPENSE",
+    "amount": 50.00,
+    "description": "Grocery shopping",
+    "categoryId": "{{categoryId}}",
+    "date": "2024-03-15T10:00:00Z"
 }
 
-### 05 Soft Delete Product
-DELETE http://localhost:5000/api/v1/products/7c0164ec-a20b-4c77-b461-8704c0887712
+### Update Transaction
+PUT http://localhost:5000/api/v1/transactions/{{transactionId}}
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "amount": 55.00,
+    "description": "Updated grocery shopping"
+}
+
+### Delete Transaction
+DELETE http://localhost:5000/api/v1/transactions/{{transactionId}}
+Authorization: Bearer {{authToken}}
+
+###### Advanced Queries ######
+
+### Get Transactions by Category
+GET http://localhost:5000/api/v1/transactions?categoryId={{categoryId}}
+Authorization: Bearer {{authToken}}
+
+### Get Transactions by Type (INCOME/EXPENSE)
+GET http://localhost:5000/api/v1/transactions?type=EXPENSE
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Multiple Filters
+GET http://localhost:5000/api/v1/transactions?type=EXPENSE&startDate=2024-01-01&endDate=2024-12-31&sort=amount:desc&page=1&limit=10
+Authorization: Bearer {{authToken}}
+
+### Get Category Summary
+GET http://localhost:5000/api/v1/categories/{{categoryId}}/summary
+Authorization: Bearer {{authToken}}
