@@ -38,3 +38,14 @@
 - Seeds : `npm run seed`
 - Development : `npm run dev`
 - Prisma Studio (Database) : `npx prisma studio`
+
+### API Documentation -> Screenshots
+
+![Register User](./postman-screenshots/01-register-user.png)
+![Login User](./postman-screenshots/02-login-user.png)
+![Get All Transactions](./postman-screenshots/03-get-all-transactions.png)
+![Get Transaction By Id](./postman-screenshots/04-get-transaction-by-id.png)
+![Update Transaction](./postman-screenshots/06-update-transaction.png)
+![Delete Trasaction](./postman-screenshots/07-delete-transaction.png)
+![Summary](./postman-screenshots/08-summary.png)
+![Pagination](./postman-screenshots//09-pagination.png)
