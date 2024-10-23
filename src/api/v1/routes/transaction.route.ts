@@ -15,4 +15,6 @@ router
   .put(transactionController.updateTransaction)
   .delete(transactionController.deleteTransaction);
 
+router.get('/', transactionController.getTransactionSummary);
+
 export default router;

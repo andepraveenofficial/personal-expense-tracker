@@ -147,3 +147,6 @@
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET/api/v1/transactions/0c167ed8-8e4c-431f-8044-274d3cbaf3ac\",\"url\":\"200\",\"status\":\"24.706\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T04:49:33.251Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"PUT/api/v1/transactions/0c167ed8-8e4c-431f-8044-274d3cbaf3ac\",\"url\":\"200\",\"status\":\"12.630\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T04:50:23.679Z"}
 {"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"DELETE/api/v1/transactions/0c167ed8-8e4c-431f-8044-274d3cbaf3ac\",\"url\":\"200\",\"status\":\"19.760\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T04:51:12.994Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET/api/v1/transactions/summary\",\"url\":\"404\",\"status\":\"16.467\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T05:02:05.474Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET/api/v1/summary\",\"url\":\"200\",\"status\":\"28.306\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T05:05:29.493Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"{\"method\":\"GET/api/v1/summary\",\"url\":\"200\",\"status\":\"18.990\",\"responseTime\":\"ms\\n\"}","timestamp":"2024-10-23T05:07:21.412Z"}

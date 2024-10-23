@@ -78,3 +78,17 @@ export const deleteTransaction = asyncHandler(
     new ApiResponse(res, 200, 'Transaction deleted successfully', null);
   },
 );
+
+export const getTransactionSummary = asyncHandler(
+  async (req: Request, res: Response) => {
+    // Retrieve summary from the transaction service
+    const summary = await transactionService.getTransactionSummary();
+
+    new ApiResponse(
+      res,
+      200,
+      'Transaction summary retrieved successfully',
+      summary,
+    );
+  },
+);

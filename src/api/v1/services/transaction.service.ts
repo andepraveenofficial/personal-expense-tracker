@@ -72,3 +72,25 @@ const validateTransactionOwnership = async (
     throw new UnauthorizedError('Not authorized to modify this transaction');
   }
 };
+
+export const getTransactionSummary = async () => {
+  // Calculate totals
+  const totalIncome = await prisma.transaction.aggregate({
+    _sum: { amount: true },
+    where: { type: 'INCOME' }, // Calculate total income
+  });
+
+  const totalExpenses = await prisma.transaction.aggregate({
+    _sum: { amount: true },
+    where: { type: 'EXPENSE' }, // Calculate total expenses
+  });
+
+  const balance =
+    (totalIncome._sum.amount || 0) - (totalExpenses._sum.amount || 0); // Calculate balance
+
+  return {
+    totalIncome: totalIncome._sum.amount || 0,
+    totalExpenses: totalExpenses._sum.amount || 0,
+    balance,
+  };
+};
