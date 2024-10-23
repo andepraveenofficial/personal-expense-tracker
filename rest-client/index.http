@@ -23,35 +23,21 @@ Content-Type: application/json
 }
 
 ### Store the token from login response
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTFlMGFlOS03MDQ3LTRmY2MtOTczMS0zMWI2YThjZjY3YTgiLCJpYXQiOjE3Mjk2NTExMzQsImV4cCI6MTczMDI1NTkzNH0.P3KF0otN2DtylSxWJ62lfB5xXwKKOtx1B5gMf5o9d8g
-
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTFlMGFlOS03MDQ3LTRmY2MtOTczMS0zMWI2YThjZjY3YTgiLCJpYXQiOjE3Mjk2NTQ0NDIsImV4cCI6MTczMDI1OTI0Mn0.bqAsNhmLIwKDMIll6lIEwZ7DgK1lCsG9nMhzqRBrD3w
 ###### Categories ######
 
 ### Get All Categories
 GET http://localhost:5000/api/v1/categories
-Authorization: Bearer {{authToken}}
-
-### Get Categories with Pagination
-GET http://localhost:5000/api/v1/categories?page=1&limit=10
-Authorization: Bearer {{authToken}}
-
-### Get Categories with Search
-GET http://localhost:5000/api/v1/categories?search=groceries
-Authorization: Bearer {{authToken}}
-
-### Get Categories with Sorting
-GET http://localhost:5000/api/v1/categories?sort=name:asc
-Authorization: Bearer {{authToken}}
 
 ### Create New Category
 POST http://localhost:5000/api/v1/categories
-Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "name": "Groceries",
+    "name": "frelancing",
     "type": "EXPENSE"
 }
+
 
 ### Update Category
 
@@ -66,8 +52,10 @@ Content-Type: application/json
 }
 
 ### Delete Category
+@categoryId = 92342778-8b18-43af-97d9-cfee7365c2fa
 DELETE http://localhost:5000/api/v1/categories/{{categoryId}}
 Authorization: Bearer {{authToken}}
+
 
 ###### Transactions ######
 
@@ -75,23 +63,8 @@ Authorization: Bearer {{authToken}}
 GET http://localhost:5000/api/v1/transactions
 Authorization: Bearer {{authToken}}
 
-### Get Transactions with Pagination
-GET http://localhost:5000/api/v1/transactions?page=1&limit=10
-Authorization: Bearer {{authToken}}
-
-### Get Transactions with Search
-GET http://localhost:5000/api/v1/transactions?search=grocery
-Authorization: Bearer {{authToken}}
-
-### Get Transactions with Sorting
-GET http://localhost:5000/api/v1/transactions?sort=amount:desc
-Authorization: Bearer {{authToken}}
-
-### Get Transactions with Date Range
-GET http://localhost:5000/api/v1/transactions?startDate=2024-01-01&endDate=2024-12-31
-Authorization: Bearer {{authToken}}
-
 ### Create New Transaction
+@categoryId = 92342778-8b18-43af-97d9-cfee7365c2fa
 POST http://localhost:5000/api/v1/transactions
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
@@ -103,6 +76,26 @@ Content-Type: application/json
     "categoryId": "{{categoryId}}",
     "date": "2024-03-15T10:00:00Z"
 }
+
+### Get Transactions with Pagination
+GET http://localhost:5000/api/v1/transactions?page=1&limit=10
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Search
+GET http://localhost:5000/api/v1/transactions?search=INCOME
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Search
+GET http://localhost:5000/api/v1/transactions?search=EXPENSE
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Sorting
+GET http://localhost:5000/api/v1/transactions?sort=amount
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Date Range
+GET http://localhost:5000/api/v1/transactions?startDate=2024-01-01&endDate=2024-12-31
+Authorization: Bearer {{authToken}}
 
 ### Update Transaction
 @transactionId = 0c167ed8-8e4c-431f-8044-274d3cbaf3ac
@@ -132,3 +125,5 @@ Authorization: Bearer {{authToken}}
 ### Get Transactions with Multiple Filters
 GET http://localhost:5000/api/v1/transactions?type=EXPENSE&startDate=2024-01-01&endDate=2024-12-31&sort=amount:desc&page=1&limit=10
 Authorization: Bearer {{authToken}}
+
+#####################

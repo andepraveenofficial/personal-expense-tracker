@@ -7,7 +7,6 @@ import { AuthRequest } from '../../../middlewares/auth.middleware';
 
 export const getAllTransactions = asyncHandler(
   async (req: AuthRequest, res: Response) => {
-    // const userId = req.user?.userId;
     const transactions = await transactionService.getAllTransactions(req);
     new ApiResponse(
       res,
@@ -19,12 +18,20 @@ export const getAllTransactions = asyncHandler(
 );
 
 export const createTransaction = asyncHandler(
-  async (req: Request, res: Response) => {
+  async (req: AuthRequest, res: Response) => {
+    const userId = req.user?.userId; // Extract userId from authenticated request
+
+    if (!userId) {
+      throw new Error('User not found');
+    }
+
     const transactionData: CreateTransactionDto = {
       ...req.body,
     };
-    const newTransaction =
-      await transactionService.createTransaction(transactionData);
+    const newTransaction = await transactionService.createTransaction(
+      userId,
+      transactionData,
+    ); // Pass userId to service
     new ApiResponse(
       res,
       201,
@@ -37,7 +44,6 @@ export const createTransaction = asyncHandler(
 export const updateTransaction = asyncHandler(
   async (req: Request, res: Response) => {
     const { id } = req.params;
-
     const updateData: UpdateTransactionDto = req.body;
     const updatedTransaction = await transactionService.updateTransaction(
       id,

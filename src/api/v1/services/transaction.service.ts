@@ -16,7 +16,7 @@ export const getAllTransactions = async (
   const paginatedTransactions = await applyQueryOptions<TransactionModel>(
     req,
     prisma.transaction,
-    ['description', 'type'], // searchable fields
+    ['INCOME', 'EXPENSE'], // searchable fields
     ['amount', 'date', 'createdAt'], // sortable fields
   );
 
@@ -25,9 +25,10 @@ export const getAllTransactions = async (
 
 // Create a new transaction
 export const createTransaction = async (
+  userId: string,
   transactionData: CreateTransactionDto,
 ): Promise<TransactionModel> => {
-  return await transactionRepository.create(transactionData);
+  return await transactionRepository.create(userId, transactionData);
 };
 
 // Update a transaction

@@ -2,8 +2,28 @@ import prisma from '../../../config/prisma';
 import { CreateTransactionDto, UpdateTransactionDto } from '../dtos';
 import { NotFoundError } from '../../../handlers/apiCustomError.handler';
 
-export const create = async (transactionData: CreateTransactionDto) => {
-  return await prisma.transaction.create({ data: transactionData });
+export const create = async (
+  userId: string,
+  transactionData: CreateTransactionDto,
+) => {
+  const category = await prisma.category.findUnique({
+    where: { id: transactionData.categoryId },
+  });
+
+  if (!category) {
+    throw new Error('Category not found');
+  }
+
+  return await prisma.transaction.create({
+    data: {
+      type: transactionData.type,
+      amount: transactionData.amount,
+      description: transactionData.description,
+      date: transactionData.date || new Date(),
+      userId: userId, // Link to user
+      categoryId: transactionData.categoryId, // Link to category
+    },
+  });
 };
 
 export const findById = async (id: string) => {

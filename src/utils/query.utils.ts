@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Request } from 'express';
+import { AuthRequest } from '../middlewares/auth.middleware';
 
 type PrismaModel = {
   count: (args?: { where: any }) => Promise<number>;
@@ -32,7 +32,7 @@ type QueryConditions = {
 };
 
 export async function applyQueryOptions<T>(
-  req: Request,
+  req: AuthRequest,
   model: PrismaModel,
   searchFields: string[],
   sortableFields: string[],

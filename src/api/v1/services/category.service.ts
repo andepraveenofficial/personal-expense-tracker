@@ -1,16 +1,9 @@
-import { Request } from 'express';
 import { CreateCategoryDto, UpdateCategoryDto } from '../dtos';
 import { categoryRepository } from '../repositories';
-import { applyQueryOptions } from '../../../utils/query.utils';
-import prisma from '../../../config/prisma';
 
-export const getAllCategories = async (req: Request) => {
-  return await applyQueryOptions(
-    req,
-    prisma.category,
-    ['name', 'type'],
-    ['name', 'type', 'createdAt'],
-  );
+export const getAllCategories = async () => {
+  const allCategories = await categoryRepository.getAll();
+  return allCategories;
 };
 
 export const createCategory = async (categoryData: CreateCategoryDto) => {

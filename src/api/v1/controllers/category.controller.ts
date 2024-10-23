@@ -6,7 +6,7 @@ import asyncHandler from '../../../handlers/async.handler';
 
 export const getAllCategories = asyncHandler(
   async (req: Request, res: Response) => {
-    const categories = await categoryService.getAllCategories(req);
+    const categories = await categoryService.getAllCategories();
     new ApiResponse(res, 200, 'Successfully Retrieved Categories', categories);
   },
 );
