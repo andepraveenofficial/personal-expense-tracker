@@ -4,26 +4,26 @@ GET http://localhost:5000
 ###### Authentication ######
 
 ### Register New User
-POST http://localhost:5000/api/v1/auth/register
+POST http://localhost:5000/api/v1/auth/signup
 Content-Type: application/json
 
 {
-    "name": "John Doe",
-    "email": "john@example.com",
+    "name": "user",
+    "email": "user@example.com",
     "password": "password123"
 }
 
 ### Login User
-POST http://localhost:5000/api/v1/auth/login
+POST http://localhost:5000/api/v1/auth/signin
 Content-Type: application/json
 
 {
-    "email": "john@example.com",
+    "email": "user@example.com",
     "password": "password123"
 }
 
 ### Store the token from login response
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTFlMGFlOS03MDQ3LTRmY2MtOTczMS0zMWI2YThjZjY3YTgiLCJpYXQiOjE3Mjk2NTExMzQsImV4cCI6MTczMDI1NTkzNH0.P3KF0otN2DtylSxWJ62lfB5xXwKKOtx1B5gMf5o9d8g
 
 ###### Categories ######
 
@@ -54,6 +54,8 @@ Content-Type: application/json
 }
 
 ### Update Category
+
+@categoryId = 92342778-8b18-43af-97d9-cfee7365c2fa
 PUT http://localhost:5000/api/v1/categories/{{categoryId}}
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
@@ -95,7 +97,7 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "type": "EXPENSE",
+    "type": "EXPENSES",
     "amount": 50.00,
     "description": "Grocery shopping",
     "categoryId": "{{categoryId}}",
@@ -103,6 +105,7 @@ Content-Type: application/json
 }
 
 ### Update Transaction
+@transactionId = 0c167ed8-8e4c-431f-8044-274d3cbaf3ac
 PUT http://localhost:5000/api/v1/transactions/{{transactionId}}
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
@@ -128,8 +131,4 @@ Authorization: Bearer {{authToken}}
 
 ### Get Transactions with Multiple Filters
 GET http://localhost:5000/api/v1/transactions?type=EXPENSE&startDate=2024-01-01&endDate=2024-12-31&sort=amount:desc&page=1&limit=10
-Authorization: Bearer {{authToken}}
-
-### Get Category Summary
-GET http://localhost:5000/api/v1/categories/{{categoryId}}/summary
 Authorization: Bearer {{authToken}}

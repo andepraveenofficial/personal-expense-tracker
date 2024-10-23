@@ -37,9 +37,6 @@ app.use(express.static(path.join(__dirname, '../', 'public'))); // Handle Static
 /* -----> logger Middleware <----- */
 app.use(loggerMorgan);
 
-// Set the directory where your EJS templates are located
-app.set('views', path.join(__dirname, 'views'));
-
 /* -----> Routes <----- */
 
 app.get('/', (req: Request, res: Response) => {
@@ -50,17 +47,6 @@ app.get('/', (req: Request, res: Response) => {
   console.log(req.originalUrl);
   console.log('--------------');
   res.send('I am Home route');
-});
-
-// Serve the OpenAPI specification at /openapi.json
-app.get('/openapi.json', (req: Request, res: Response) => {
-  const openApiPath = path.join(__dirname, '../', 'openapi.json');
-  console.log(openApiPath);
-  res.sendFile(openApiPath, (err) => {
-    if (err) {
-      res.status(500).send('Error serving OpenAPI spec');
-    }
-  });
 });
 
 // API Versions
