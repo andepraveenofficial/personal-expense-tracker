@@ -13,21 +13,18 @@ export const seedUsers = async () => {
   // Users to seed
   const users = [
     {
-      firstName: 'user1',
-      lastName: 'one',
-      email: 'manager@example.com',
+      name: 'first',
+      email: 'first@example.com',
       password,
     },
     {
-      firstName: 'user2',
-      lastName: 'two',
-      email: 'admin@example.com',
+      name: 'second',
+      email: 'second@example.com',
       password,
     },
     {
-      firstName: 'user3',
-      lastName: 'three',
-      email: 'user@example.com',
+      name: 'third',
+      email: 'third@example.com',
       password,
     },
   ];

@@ -19,8 +19,8 @@
    1. Error Handler
    2. Response Handler
    3. Async Handler
-5. Authentication
-6. Validation
+5. Authentication : `JWT (JSON Web Tokens)`
+6. Validation : `zod`
 7. QueryParams
 8. Logger
 9. swagger
