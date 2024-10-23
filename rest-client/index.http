@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ### Store the token from login response
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTFlMGFlOS03MDQ3LTRmY2MtOTczMS0zMWI2YThjZjY3YTgiLCJpYXQiOjE3Mjk2NTQ0NDIsImV4cCI6MTczMDI1OTI0Mn0.bqAsNhmLIwKDMIll6lIEwZ7DgK1lCsG9nMhzqRBrD3w
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwZTFlMGFlOS03MDQ3LTRmY2MtOTczMS0zMWI2YThjZjY3YTgiLCJpYXQiOjE3Mjk2NTg0MzYsImV4cCI6MTczMDI2MzIzNn0.v781xGtHyx2Gg7FNz4LAheAjE5cmE8k_lHIy-1oorSM
 ###### Categories ######
 
 ### Get All Categories
@@ -77,27 +77,15 @@ Content-Type: application/json
     "date": "2024-03-15T10:00:00Z"
 }
 
-### Get Transactions with Pagination
-GET http://localhost:5000/api/v1/transactions?page=1&limit=10
+### Get Transaction By Id
+
+@transactionId = f03ff410-c7b0-4052-9bf3-a6e262212290
+
+GET http://localhost:5000/api/v1/transactions/{{transactionId}}
 Authorization: Bearer {{authToken}}
 
-### Get Transactions with Search
-GET http://localhost:5000/api/v1/transactions?search=INCOME
-Authorization: Bearer {{authToken}}
 
-### Get Transactions with Search
-GET http://localhost:5000/api/v1/transactions?search=EXPENSE
-Authorization: Bearer {{authToken}}
-
-### Get Transactions with Sorting
-GET http://localhost:5000/api/v1/transactions?sort=amount
-Authorization: Bearer {{authToken}}
-
-### Get Transactions with Date Range
-GET http://localhost:5000/api/v1/transactions?startDate=2024-01-01&endDate=2024-12-31
-Authorization: Bearer {{authToken}}
-
-### Update Transaction
+### Update Transaction By Id
 @transactionId = 0c167ed8-8e4c-431f-8044-274d3cbaf3ac
 PUT http://localhost:5000/api/v1/transactions/{{transactionId}}
 Authorization: Bearer {{authToken}}
@@ -108,9 +96,29 @@ Content-Type: application/json
     "description": "Updated grocery shopping"
 }
 
-### Delete Transaction
+
+### Delete Transaction By Id
+@transactionId = 0c167ed8-8e4c-431f-8044-274d3cbaf3ac
 DELETE http://localhost:5000/api/v1/transactions/{{transactionId}}
 Authorization: Bearer {{authToken}}
+
+
+### Get Transactions with Pagination
+GET http://localhost:5000/api/v1/transactions?page=1&limit=6
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Sorting
+GET http://localhost:5000/api/v1/transactions?sort=amount
+Authorization: Bearer {{authToken}}
+
+### Get Transactions with Date Range
+GET http://localhost:5000/api/v1/transactions?startDate=2024-01-01&endDate=2024-12-31
+Authorization: Bearer {{authToken}}
+
+
+
+
+
 
 ###### Advanced Queries ######
 

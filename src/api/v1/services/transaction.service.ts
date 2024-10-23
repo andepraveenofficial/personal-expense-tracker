@@ -1,4 +1,3 @@
-import { Request } from 'express';
 import { CreateTransactionDto, UpdateTransactionDto } from '../dtos';
 import { transactionRepository } from '../repositories';
 import {
@@ -8,19 +7,26 @@ import {
 import prisma from '../../../config/prisma';
 import { UnauthorizedError } from './../../../handlers/apiCustomError.handler';
 import { TransactionModel } from '../models';
+import { AuthRequest } from '../../../middlewares/auth.middleware';
 
 // Get all transactions with pagination and user filtering
 export const getAllTransactions = async (
-  req: Request,
+  req: AuthRequest,
 ): Promise<PaginatedResponse<TransactionModel>> => {
   const paginatedTransactions = await applyQueryOptions<TransactionModel>(
     req,
     prisma.transaction,
-    ['INCOME', 'EXPENSE'], // searchable fields
+    ['type'], // searchable fields
     ['amount', 'date', 'createdAt'], // sortable fields
   );
 
   return paginatedTransactions;
+};
+
+export const getTransactionById = async (
+  id: string,
+): Promise<TransactionModel> => {
+  return await transactionRepository.findById(id);
 };
 
 // Create a new transaction

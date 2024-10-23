@@ -47,6 +47,10 @@ export async function applyQueryOptions<T>(
 
   const queryOptions: QueryConditions = { where: {} };
 
+  // Filter by userId (assumed to be part of AuthRequest)
+  if (req.user?.userId) {
+    queryOptions.where['userId'] = req.user?.userId;
+  }
   // Apply filtering
   if (options.filter) {
     Object.entries(options.filter).forEach(([key, value]) => {
@@ -54,10 +58,10 @@ export async function applyQueryOptions<T>(
     });
   }
 
-  // Apply search
+  // Apply search for results
   if (options.search) {
     queryOptions.where.OR = searchFields.map((field) => ({
-      [field]: { contains: options.search, mode: 'insensitive' as const },
+      [field]: { contains: options.search, mode: 'insensitive' }, // This can stay
     }));
   }
 

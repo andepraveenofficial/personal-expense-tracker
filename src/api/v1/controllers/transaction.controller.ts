@@ -41,6 +41,19 @@ export const createTransaction = asyncHandler(
   },
 );
 
+export const getTransactionById = asyncHandler(
+  async (req: AuthRequest, res: Response) => {
+    const { id } = req.params;
+    const transaction = await transactionService.getTransactionById(id);
+    new ApiResponse(
+      res,
+      200,
+      'Transaction Retrieved successfully',
+      transaction,
+    );
+  },
+);
+
 export const updateTransaction = asyncHandler(
   async (req: Request, res: Response) => {
     const { id } = req.params;

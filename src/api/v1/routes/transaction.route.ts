@@ -11,6 +11,7 @@ router
 
 router
   .route('/:id')
+  .get(transactionController.getTransactionById)
   .put(transactionController.updateTransaction)
   .delete(transactionController.deleteTransaction);
 
